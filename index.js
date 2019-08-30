@@ -15,13 +15,13 @@ const helpers = require('./lib/helpers')
 
 // // TESTING
 // // @TODO delete this
-// _data.delete('test', 'newFile', function (err) {
+// _data.delete('users', 'newFile', function (err) {
 //     console.log('this was the error', err);
 // });
 
 // The server should respond to all requests with a string
 const httpServer = http.createServer(function (req, res) {
-    unifiedServer(req,res)
+    unifiedServer(req, res)
 });
 
 
@@ -37,8 +37,8 @@ const httpsServerOptions = {
 }
 
 //Instantiate the HTTPS server
-const httpsServer = https.createServer(httpsServerOptions,function(req,res){
-    unifiedServer(req,res)
+const httpsServer = https.createServer(httpsServerOptions, function (req, res) {
+    unifiedServer(req, res)
 })
 
 
@@ -60,6 +60,9 @@ const unifiedServer = function (req, res) {
     //Get the query string as an object
     const queryString = parseUrl.query;
 
+    // Get the headers as an object
+    const headers = req.headers;
+
     // Get the HTTP method
     const method = req.method.toLowerCase();
 
@@ -79,9 +82,9 @@ const unifiedServer = function (req, res) {
         //Construct the data object to send to the handler
         var data = {
             'trimmedPath': trimmedPath,
-            'queryString': queryString,
+            'queryStringObject': queryString,
             'method': method,
-            // 'headers': headers,
+            'headers': headers,
             'payload': helpers.parseJsonToObject(buffer)
         };
 
