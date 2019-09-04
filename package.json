@@ -8,5 +8,8 @@
     "start": "NODE_ENV=staging nodemon index"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "win-node-env": "^0.4.0"
+  }
 }
